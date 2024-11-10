@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Nykka Product Recommendation System</title>
+    <!--    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">-->
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Full screen height */
+        }
+
+        .full-screen-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure the image covers the screen */
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity:0.5;
+        }
+ /* Flexbox container */
+        .icon-text-container {
+            position: absolute;
+            top: 40px; /* Adjust vertical position */
+            left: 40%;
+            transform: translateX(-50%);
+            width: 70%; /* Adjust width */
+            display: flex;
+            z-index: 2; /* Ensure it stays on top of the image */
+        }
+
+        .icon {
+            width: 250px; /* Icon size */
+            height: auto;
+        }
+
+        .text {
+            font-size: 24px;
+            color: white; /* Adjust text color */
+        }
+
+        .container{
+        display: flex;
+        flex-direction: column;
+         margin: 0 auto;
+        }
+
+        .search-bar-container {
+            width: 86%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display:flex;
+            z-index: 2; /* Ensure the search bar stays on top of the image */
+            }
+
+        .search-icon {
+            position: absolute; /* Positioning the icon */
+      l     eft: 15px; /* Space from the left */
+            pointer-events: none; /* Prevent click events on the icon */
+            }
+
+        .search-icon img{
+           position: absolute;
+           top:13px;
+            left: 10px; /* Adjust icon position from the left */
+            width: 24px; /* Set the width of the icon */
+            height: 24px; /* Set the height of the icon */
+            pointer-events: none;
+           }
+
+        .search-bar-container input[type="text"] {
+            width: 90%;
+            padding: 10px 10px 10px 40px;
+            font-size: 16px;
+            background:#fff;
+            color:black;
+            font-family: cursive;
+            border:3px solid #e965ac
+            }
+
+    .search-bar-container input[type="text"]::placeholder {
+        color: #aaa; /* Placeholder text color */
+        opacity: 3; /* Ensures the placeholder color is fully opaque */
+        }
+
+    .search-bar-container input[type="text"]:focus {
+        border: 3px solid #e965ac; /* Pink border color */
+        outline: none; /* Remove default outline */
+        }
+
+        .search-bar-container button {
+            padding: 14px;
+            margin-top:10px;
+            margin-left:150px;
+            font-size: 16px;
+            cursor: pointer;
+            width:300px;
+            background:#e965ac;
+            border:none;
+            color:white;
+            border-radius:12px;
+            font-weight:bold;
+           }
+
+        .recommendations {
+            margin-top: 20px;
+            text-align: left;
+            width: 91%;
+            background-color: #e965ac;
+            border-radius: 5px;
+        }
+
+        .recommendations h2{
+        color:white;
+        font-weight:bold;
+        text-align : center;
+        }
+
+    .recommendations ul {
+    padding-right: 25px;
+    padding-left: 50px;
+    padding-top: 30px;
+    padding-bottom: 3px;
+    }
+
+    .recommendations li {
+        margin-bottom: 13px;
+        font-size: 18px;
+        color: #fff;
+    }
+    </style>
+</head>
+<body>
+<div class="image-container">
+    <!-- Full-screen image -->
+    <img alt="Background Image" class="full-screen-image"
+         src="{{ url_for('static', filename='images/nykka img1.jpg') }}">
+
+    <div class="icon-text-container">
+        <div>
+            <!-- Icon Image -->
+            <img alt="Icon" class="icon" src="{{ url_for('static', filename='images/Nykaa_Logo.png') }}">
+        </div>
+        <div class="container">
+            <div class="search-bar-container">
+                <form method="POST">
+                   <span class="search-icon">
+                       <img src="{{ url_for('static', filename='images/search-icon.png') }}">
+                   </span>
+                    <input name="prod" placeholder="Enter Product Name..." type="text" value="{{ prod }}">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            <!-- Display Recommendations -->
+
+            <div class="recommendations">
+                {% if error_message %}
+                <h2>{{ error_message }}</h2>  <!-- Show error message if it exists -->
+                {% elif content_based_rec %}
+                <h2>Recommended Products:</h2>
+                <ul>
+                    {% for product in content_based_rec %}
+                    <li>{{ product }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+</html>
