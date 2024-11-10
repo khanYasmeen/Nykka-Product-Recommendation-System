@@ -32,7 +32,7 @@ Use Cosine Similarity on the array of vectorized product descriptions to recomme
 Build a simple front-end using Flask that takes user queries and provides real-time product recommendations.
 
 # Risks and Challenges:-
-•	Managing sparse or missing product data.
+•	Managing sparse or missing product data. 
 •	Handling scalability as the number of products increases.
 
 # Conclusion:-
