@@ -4,11 +4,10 @@
 In a competitive online retail space, providing personalized recommendations enhances customer experience and increases sales. This project develops a product recommendation system for Nykka using NLP techniques, Python, and a Flask application. The system allows users to input search queries and receive relevant product recommendations.
 
 # Objectives:- 
-•	Build a Flask-based front end with a search bar to capture user input.                                                     
-- cd 
-•	Preprocess product data using tokenization and TF-IDF techniques.
-•	Implement Cosine Similarity to generate product recommendations.
-•	Display the top 10 product recommendations to users.
+- Build a Flask-based front end with a search bar to capture user input.                                                     
+- Preprocess product data using tokenization and TF-IDF techniques.
+- Implement Cosine Similarity to generate product recommendations.
+- Display the top 10 product recommendations to users.
 
 # Data Sources:-
 I got this data from Kaggle, a popular platform known for its datasets
